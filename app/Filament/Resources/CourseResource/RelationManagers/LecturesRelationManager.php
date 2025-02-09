@@ -13,7 +13,7 @@ class LecturesRelationManager extends RelationManager
 
     public static function getTitle(\Illuminate\Database\Eloquent\Model $ownerRecord, string $pageClass): string
     {
-        return __('resources.labels.lectures'); // Fetching translation
+        return __('resources.labels.lectures');
     }
 
     public function form(Form $form): Form
@@ -21,12 +21,14 @@ class LecturesRelationManager extends RelationManager
         return $form
             ->schema([
                 Forms\Components\TextInput::make('title')
-                    ->label(__('resources.fields.title')) // Using localization
+                    ->label(__('resources.fields.title'))
                     ->required()
+                    ->columnSpanFull()
                     ->maxLength(255),
-                Forms\Components\Textarea::make('description')
-                    ->label(__('resources.fields.description')) // Using localization
-                    ->required(),
+                Forms\Components\RichEditor::make('description')
+                    ->label(__('resources.fields.description'))
+                    ->required()
+                    ->columnSpanFull(),
             ]);
     }
 
@@ -35,7 +37,7 @@ class LecturesRelationManager extends RelationManager
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('title')
-                    ->label(__('resources.fields.title')), // Using localization
+                    ->label(__('resources.fields.title')),
                 Tables\Columns\TextColumn::make('description')
                     ->label(__('resources.fields.description')),
             ])

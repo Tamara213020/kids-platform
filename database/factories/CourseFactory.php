@@ -16,11 +16,12 @@ class CourseFactory extends Factory
      */
     public function definition(): array
     {
+        $word = $this->faker->word();
         return [
             'title' => $this->faker->sentence(),
             'slug' => $this->faker->slug(),
             'description' => $this->faker->paragraph(),
-            'image_url' => $this->faker->imageUrl(),
+            'image_url' => 'https://placehold.co/400x400?text='.$word,
         ];
     }
 }

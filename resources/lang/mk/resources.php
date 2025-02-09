@@ -5,6 +5,7 @@ return [
         'badges' => 'Беџови',
         'courses' => 'Курсеви',
         'users' => 'Корисници',
+        'certificates' => 'Сертификати',
     ],
 
     'fields' => [
@@ -13,19 +14,21 @@ return [
         'role' => 'Улога',
         'password' => 'Лозинка',
         'profile_photo_path' => 'Профилна слика',
-        'email_verified_at' => 'Верификувано време на е-пошта',
+        'email_verified_at' => 'Време на верификација на е-пошта',
         'title' => 'Наслов',
-        'slug' => 'Пермалинк',
+        'slug' => 'Слаг',
         'description' => 'Опис',
         'image_url' => 'Слика',
         'color_hash' => 'Боја',
-        'two_factor_secret' => 'Таа елементарна тајна за двофакторска автентикација',
-        'two_factor_recovery_codes' => 'Кодови за опоравување на двофакторска автентикација',
-        'two_factor_confirmed_at' => 'Датум на потврда на двофакторска автентикација',
+        'two_factor_secret' => 'two_factor_secret',
+        'two_factor_recovery_codes' => 'two_factor_recovery_codes',
+        'two_factor_confirmed_at' => 'two_factor_confirmed_at',
         'current_team_id' => 'Тим на корисникот',
         'created_at' => 'Датум на креирање',
         'updated_at' => 'Датум на ажурирање',
         'score' => 'Резултат',
+        'user' => 'Корисник',
+        'course' => 'Курс',
     ],
 
     'actions' => [
@@ -45,6 +48,7 @@ return [
         'courses' => 'Курсеви',
         'badges' => 'Значки',
         'lectures' => 'Лекции',
+        'certificates' => 'Сертификати',
     ],
 
     'pagination' => [

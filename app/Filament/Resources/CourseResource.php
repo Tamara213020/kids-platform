@@ -39,6 +39,7 @@ class CourseResource extends Resource
                     ->columnSpanFull(),
                 Forms\Components\FileUpload::make('image_url')
                     ->label(__('resources.fields.image_url'))
+                    ->directory('courses')
                     ->image()
                     ->imageEditor()
                     ->required(),
