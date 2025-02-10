@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -13,4 +14,5 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/', DashboardController::class)->name('dashboard');
+    Route::get('/certificates/{certificate}', [CertificateController::class, 'generatePdf'])->name('certificates.generate');
 });
