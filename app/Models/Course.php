@@ -16,6 +16,7 @@ class Course extends Model
     protected $appends = [
         'image_full_url'
     ];
+
     public function imageFullUrl(): Attribute
     {
         return Attribute::get(fn() => Storage::url($this->attributes['image_url']));

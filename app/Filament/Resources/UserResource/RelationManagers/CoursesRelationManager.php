@@ -7,21 +7,25 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
+use Filament\Tables\Actions\AttachAction;
+use Filament\Tables\Actions\DetachAction;
 use Filament\Tables\Table;
 
 class CoursesRelationManager extends RelationManager
 {
     protected static string $relationship = 'courses';
-    protected static ?string $relationshipLabel = 'Courses';
+
+    protected static ?string $recordTitleAttribute = 'title';
+
 
     public function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('course_id')
-                    ->label('Course')
-                    ->options(Course::all()->pluck('title', 'id'))
-                    ->required(),
+                Forms\Components\TextInput::make('title')
+                    ->label('Course Title')
+                    ->required()
+                    ->maxLength(255),
             ]);
     }
 
@@ -32,23 +36,39 @@ class CoursesRelationManager extends RelationManager
             ->columns([
                 Tables\Columns\TextColumn::make('title')
                     ->label('Course Title')
-                    ->sortable(),
+                    ->sortable()
+                    ->searchable(),
+
                 Tables\Columns\TextColumn::make('description')
                     ->label('Description')
-                    ->limit(50),
+                    ->limit(50)
+                    ->sortable(),
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Created At')
-                    ->dateTime(),
+                    ->dateTime()
+                    ->sortable(),
             ])
             ->filters([
                 //
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make(),
+                AttachAction::make()
+                    ->label('Поврзи курс')
+                    ->modalHeading('Поврзи курс со корисник')
+                    ->modalDescription('Дали сте сигурни дека сакате да го поврзете курсот?')
+                    ->modalSubmitActionLabel('Потврди')
+                    ->preloadRecordSelect()
+                    ->form(fn(AttachAction $action): array => [
+                        $action->getRecordSelect(),
+                    ]),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                DetachAction::make()
+                    ->label('Отстрани')
+                    ->modalHeading('Отстрани го курсот')
+                    ->modalDescription('Дали сте сигурни дека сакате да го отстраните курсот?')
+                    ->modalSubmitActionLabel('Потврди'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

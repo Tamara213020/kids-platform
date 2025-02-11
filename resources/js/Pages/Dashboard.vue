@@ -14,7 +14,7 @@
                         <div class="p-4">
                             <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-200">{{ course.title }}</h3>
                             <p class="text-gray-700 dark:text-gray-300 mt-2">{{ course.description }}</p>
-                            <a :href="`/courses/${course.slug}`" class="inline-block mt-4 text-blue-500">Learn more</a>
+                            <Link :href="route('courses.show', course)" class="inline-block mt-4 text-blue-500">Learn more</Link>
                         </div>
                     </div>
                 </div>
@@ -25,6 +25,10 @@
 
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
+import {Link} from "@inertiajs/vue3";
+import {inject} from "vue";
+
+const route = inject('route')
 
 defineProps({
     courses: {

@@ -7,6 +7,8 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
+use Filament\Tables\Actions\AttachAction;
+use Filament\Tables\Actions\DetachAction;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -14,33 +16,33 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class BadgesRelationManager extends RelationManager
 {
     protected static string $relationship = 'badges';
-
-    protected static ?string $title = 'Badges';
+    protected static ?string $recordTitleAttribute = 'name';
 
     public function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('badge_id')
-                    ->label('Badge')
-                    ->options(Badge::all()->pluck('name', 'id')) // Prikazhuva ime na badge
-                    ->required(),
+                Forms\Components\TextInput::make('name')
+                    ->label('Badge Name')
+                    ->required()
+                    ->maxLength(255),
             ]);
     }
 
     public function table(Table $table): Table
     {
         return $table
-            ->recordTitleAttribute('badges')
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->label('Badge Name')
                     ->sortable()
                     ->searchable(),
+
                 Tables\Columns\TextColumn::make('color_hash')
                     ->label('Color Code')
                     ->sortable()
                     ->searchable(),
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Assigned At')
                     ->dateTime()
@@ -50,11 +52,22 @@ class BadgesRelationManager extends RelationManager
                 //
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make(),
+                AttachAction::make()
+                    ->label('Поврзи беџ')
+                    ->modalHeading('Поврзи беџ со корисник')
+                    ->modalDescription('Дали сте сигурни дека сакате да го поврзете беџот?')
+                    ->modalSubmitActionLabel('Потврди')
+                    ->preloadRecordSelect()
+                    ->form(fn(AttachAction $action): array => [
+                        $action->getRecordSelect(),
+                    ]),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                DetachAction::make()
+                    ->label('Отстрани')
+                    ->modalHeading('Отстрани беџ')
+                    ->modalDescription('Дали сте сигурни дека сакате да го отстраните беџот?')
+                    ->modalSubmitActionLabel('Потрди'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

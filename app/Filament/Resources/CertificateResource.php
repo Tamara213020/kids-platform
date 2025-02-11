@@ -72,6 +72,10 @@ class CertificateResource extends Resource
                     ->label(__('resources.actions.view')),
                 Tables\Actions\EditAction::make()
                     ->label(__('resources.actions.edit')),
+                Tables\Actions\Action::make('print')
+                    ->color('info')
+                    ->icon('heroicon-o-printer')
+                    ->url(fn (Certificate $record): string => route('certificates.generate', ['certificate' => $record]), true),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
