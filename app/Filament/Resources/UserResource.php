@@ -2,8 +2,11 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\CourseResource\RelationManagers\LecturesRelationManager;
 use App\Filament\Resources\UserResource\Pages;
+use App\Filament\Resources\UserResource\RelationManagers\BadgesRelationManager;
+use App\Filament\Resources\UserResource\RelationManagers\CertificatesRelationManager;
+use App\Filament\Resources\UserResource\RelationManagers\CoursesRelationManager;
+use App\Filament\Resources\UserResource\RelationManagers\CourseUserRelationManager;
 use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -17,9 +20,14 @@ class UserResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-users';
 
-    public static function getNavigationLabel(): string
+    public static function getModelLabel(): string
     {
-        return __('resources.navigation.users');
+        return __('resources.labels.user');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('resources.labels.users');
     }
 
 
@@ -118,7 +126,9 @@ class UserResource extends Resource
     public static function getRelations(): array
     {
         return [
-           //
+            CoursesRelationManager::class,
+            BadgesRelationManager::class,
+            CertificatesRelationManager::class,
         ];
     }
 

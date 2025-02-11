@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class CourseQuizQuestion extends Model
 {
-    //
     public function courseQuiz(): BelongsTo
     {
         return $this->belongsTo(CourseQuiz::class);

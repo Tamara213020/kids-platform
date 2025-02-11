@@ -19,9 +19,14 @@ class BadgeResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-star';
 
-    public static function getNavigationLabel(): string
+    public static function getModelLabel(): string
     {
-        return __('resources.navigation.badges');
+        return __('resources.labels.badge');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('resources.labels.badges');
     }
 
     public static function form(Form $form): Form

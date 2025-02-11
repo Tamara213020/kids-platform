@@ -13,6 +13,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
 
 class User extends Authenticatable
 {
@@ -90,4 +91,6 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Course::class, 'course_users', 'user_id', 'course_id');
     }
+
+
 }

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Enums\UserRole;
 use App\Models\Badge;
 use App\Models\Course;
+use App\Models\CourseQuiz;
 use App\Models\Lecture;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -34,9 +35,13 @@ class DatabaseSeeder extends Seeder
             Lecture::factory(10)->create(['course_id' => $course->id]);
         });
 
+        Course::all()->each(function ($course) {
+            CourseQuiz::factory()->create(['course_id' => $course->id]);
+        });
+
         User::factory()->create([
             'name' => 'Test User',
-            'email' => 'test1@example.com',
+            'email' => 'test@example.com',
             'role' => UserRole::ADMIN,
             'password' => 'password',
         ]);

@@ -4,6 +4,8 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\CourseResource\Pages;
 use App\Filament\Resources\CourseResource\RelationManagers\LecturesRelationManager;
+use App\Filament\Resources\CourseResource\RelationManagers\CourseQuizzesRelationManager;
+use App\Filament\Resources\CourseResource\RelationManagers\UsersRelationManager;
 use App\Models\Course;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -17,9 +19,14 @@ class CourseResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
 
-    public static function getNavigationLabel(): string
+    public static function getModelLabel(): string
     {
-        return __('resources.navigation.courses');
+        return __('resources.labels.course');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('resources.labels.courses');
     }
 
 
@@ -90,6 +97,8 @@ class CourseResource extends Resource
     {
         return [
             LecturesRelationManager::class,
+            CourseQuizzesRelationManager::class,
+            UsersRelationManager::class,
         ];
     }
 

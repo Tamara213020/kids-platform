@@ -2,8 +2,10 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\CertificateResource\Pages;
-use App\Models\Certificate;
+use App\Filament\Resources\CourseQuizResource\Pages;
+use App\Filament\Resources\CourseQuizResource\RelationManagers;
+use App\Filament\Resources\CourseQuizResource\RelationManagers\CourseQuizQuestionsRelationManager;
+use App\Models\CourseQuiz;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -12,34 +14,40 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class CertificateResource extends Resource
+class CourseQuizResource extends Resource
 {
-    protected static ?string $model = Certificate::class;
+    protected static ?string $model = CourseQuiz::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+    protected static ?string $navigationIcon = 'heroicon-o-clipboard';
+
+    protected static bool $shouldRegisterNavigation = false;
 
     public static function getModelLabel(): string
     {
-        return __('resources.labels.certificate');
+        return __('resources.labels.course_quiz');
     }
 
     public static function getPluralModelLabel(): string
     {
-        return __('resources.labels.certificates');
+        return __('resources.labels.course_quizzes');
     }
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('user_id')
-                    ->label(__('resources.fields.user'))
-                    ->relationship('user', 'name')
-                    ->required(),
                 Forms\Components\Select::make('course_id')
-                    ->label(__('resources.fields.course'))
                     ->relationship('course', 'title')
+                    ->label(__('resources.fields.course'))
                     ->required(),
+                Forms\Components\TextInput::make('min_points')
+                    ->label(__('resources.fields.min_points'))
+                    ->required()
+                    ->numeric(),
+                Forms\Components\Textarea::make('goal')
+                    ->label(__('resources.fields.goal'))
+                    ->required()
+                    ->columnSpanFull(),
             ]);
     }
 
@@ -47,11 +55,11 @@ class CertificateResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('user.name')
-                    ->label(__('resources.fields.user'))
-                    ->sortable(),
                 Tables\Columns\TextColumn::make('course.title')
                     ->label(__('resources.fields.course'))
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('min_points')
+                    ->label(__('resources.fields.min_points'))
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label(__('resources.fields.created_at'))
@@ -84,17 +92,17 @@ class CertificateResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            CourseQuizQuestionsRelationManager::class,
         ];
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCertificates::route('/'),
-            'create' => Pages\CreateCertificate::route('/create'),
-            'view' => Pages\ViewCertificate::route('/{record}'),
-            'edit' => Pages\EditCertificate::route('/{record}/edit'),
+            'index' => Pages\ListCourseQuizzes::route('/'),
+            'create' => Pages\CreateCourseQuiz::route('/create'),
+            'view' => Pages\ViewCourseQuiz::route('/{record}'),
+            'edit' => Pages\EditCourseQuiz::route('/{record}/edit'),
         ];
     }
 }
