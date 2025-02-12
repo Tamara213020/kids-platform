@@ -17,7 +17,6 @@ class CourseQuizzesRelationManager extends RelationManager
         return __('resources.labels.course_quizzes');
     }
 
-
     public function form(Form $form): Form
     {
         return $form->schema([

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class DashboardController extends Controller
@@ -13,6 +12,7 @@ class DashboardController extends Controller
         $courses = Course::query()
             ->withCount('lectures', 'users')
             ->get();
+
         return Inertia::render('Dashboard', compact('courses'));
     }
 }

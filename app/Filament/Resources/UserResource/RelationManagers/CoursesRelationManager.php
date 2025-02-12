@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources\UserResource\RelationManagers;
 
-use App\Models\Course;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
@@ -16,7 +15,6 @@ class CoursesRelationManager extends RelationManager
     protected static string $relationship = 'courses';
 
     protected static ?string $recordTitleAttribute = 'title';
-
 
     public function form(Form $form): Form
     {
@@ -59,7 +57,7 @@ class CoursesRelationManager extends RelationManager
                     ->modalDescription('Дали сте сигурни дека сакате да го поврзете курсот?')
                     ->modalSubmitActionLabel('Потврди')
                     ->preloadRecordSelect()
-                    ->form(fn(AttachAction $action): array => [
+                    ->form(fn (AttachAction $action): array => [
                         $action->getRecordSelect(),
                     ]),
             ])

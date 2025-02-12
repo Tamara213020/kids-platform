@@ -3,8 +3,8 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\CourseResource\Pages;
-use App\Filament\Resources\CourseResource\RelationManagers\LecturesRelationManager;
 use App\Filament\Resources\CourseResource\RelationManagers\CourseQuizzesRelationManager;
+use App\Filament\Resources\CourseResource\RelationManagers\LecturesRelationManager;
 use App\Filament\Resources\CourseResource\RelationManagers\UsersRelationManager;
 use App\Models\Course;
 use Filament\Forms;
@@ -28,7 +28,6 @@ class CourseResource extends Resource
     {
         return __('resources.labels.courses');
     }
-
 
     public static function form(Form $form): Form
     {
@@ -60,11 +59,11 @@ class CourseResource extends Resource
                 Tables\Columns\TextColumn::make('title')
                     ->label(__('resources.fields.title'))
                     ->searchable(),
-//                Tables\Columns\TextColumn::make('slug')
-//                    ->label(__('resources.fields.slug'))
-//                    ->searchable(),
-//                Tables\Columns\ImageColumn::make('image_url')
-//                    ->label(__('resources.fields.image_url')),
+                //                Tables\Columns\TextColumn::make('slug')
+                //                    ->label(__('resources.fields.slug'))
+                //                    ->searchable(),
+                //                Tables\Columns\ImageColumn::make('image_url')
+                //                    ->label(__('resources.fields.image_url')),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label(__('resources.fields.created_at'))
                     ->dateTime()

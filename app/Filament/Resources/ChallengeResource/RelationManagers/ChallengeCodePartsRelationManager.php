@@ -1,43 +1,35 @@
 <?php
 
-namespace App\Filament\Resources\UserResource\RelationManagers;
+namespace App\Filament\Resources\ChallengeResource\RelationManagers;
 
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class CertificatesRelationManager extends RelationManager
+class ChallengeCodePartsRelationManager extends RelationManager
 {
-    protected static string $relationship = 'certificates';
-
-    protected static ?string $title = 'Certificates';
+    protected static string $relationship = 'challengeCodeParts';
 
     public function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('course_id')
-                    ->relationship('course', 'title')
-                    ->label('Course')
-                    ->required(),
+                Forms\Components\TextInput::make('code')
+                    ->required()
+                    ->maxLength(255),
             ]);
     }
 
     public function table(Table $table): Table
     {
         return $table
-            ->recordTitleAttribute('Certificates')
+            ->recordTitleAttribute('id')
             ->columns([
-                Tables\Columns\TextColumn::make('course.title')
-                    ->label('Course')
-                    ->sortable()
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->label('Issued At')
-                    ->date()
-                    ->sortable(),
+                Tables\Columns\TextColumn::make('code'),
             ])
             ->filters([
                 //
@@ -53,6 +45,10 @@ class CertificatesRelationManager extends RelationManager
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->reorderable('order')
+            ->defaultSort('order');
     }
+
+
 }

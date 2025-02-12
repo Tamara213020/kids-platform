@@ -1,17 +1,13 @@
 <?php
+
 namespace App\Filament\Resources\CourseResource\RelationManagers;
 
-use App\Models\Course;
-use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Actions\AttachAction;
 use Filament\Tables\Table;
-use Filament\Tables\Actions\CreateAction;
-use Filament\Forms\Components\Select;
-use Illuminate\Support\Facades\DB;
 
 class UsersRelationManager extends RelationManager
 {
@@ -70,7 +66,4 @@ class UsersRelationManager extends RelationManager
                     ->modalSubmitActionLabel('Потврди'),
             ]);
     }
-
-
-
 }

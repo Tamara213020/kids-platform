@@ -6,7 +6,6 @@ use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource\RelationManagers\BadgesRelationManager;
 use App\Filament\Resources\UserResource\RelationManagers\CertificatesRelationManager;
 use App\Filament\Resources\UserResource\RelationManagers\CoursesRelationManager;
-use App\Filament\Resources\UserResource\RelationManagers\CourseUserRelationManager;
 use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -29,7 +28,6 @@ class UserResource extends Resource
     {
         return __('resources.labels.users');
     }
-
 
     public static function form(Form $form): Form
     {
@@ -80,31 +78,31 @@ class UserResource extends Resource
                 Tables\Columns\TextColumn::make('email')
                     ->label(__('resources.fields.email'))
                     ->searchable(),
-//                Tables\Columns\TextColumn::make('email_verified_at')
-//                    ->label(__('resources.fields.email_verified_at'))
-//                    ->dateTime()
-//                    ->sortable(),
-//                Tables\Columns\TextColumn::make('current_team_id')
-//                    ->label(__('resources.fields.current_team_id'))
-//                    ->numeric()
-//                    ->sortable(),
-//                Tables\Columns\TextColumn::make('profile_photo_path')
-//                    ->label(__('resources.fields.profile_photo_path'))
-//                    ->searchable(),
-//                Tables\Columns\TextColumn::make('created_at')
-//                    ->label(__('resources.fields.created_at'))
-//                    ->dateTime()
-//                    ->sortable()
-//                    ->toggleable(isToggledHiddenByDefault: true),
-//                Tables\Columns\TextColumn::make('updated_at')
-//                    ->label(__('resources.fields.updated_at'))
-//                    ->dateTime()
-//                    ->sortable()
-//                    ->toggleable(isToggledHiddenByDefault: true),
-//                Tables\Columns\TextColumn::make('two_factor_confirmed_at')
-//                    ->label(__('resources.fields.two_factor_confirmed_at'))
-//                    ->dateTime()
-//                    ->sortable(),
+                //                Tables\Columns\TextColumn::make('email_verified_at')
+                //                    ->label(__('resources.fields.email_verified_at'))
+                //                    ->dateTime()
+                //                    ->sortable(),
+                //                Tables\Columns\TextColumn::make('current_team_id')
+                //                    ->label(__('resources.fields.current_team_id'))
+                //                    ->numeric()
+                //                    ->sortable(),
+                //                Tables\Columns\TextColumn::make('profile_photo_path')
+                //                    ->label(__('resources.fields.profile_photo_path'))
+                //                    ->searchable(),
+                //                Tables\Columns\TextColumn::make('created_at')
+                //                    ->label(__('resources.fields.created_at'))
+                //                    ->dateTime()
+                //                    ->sortable()
+                //                    ->toggleable(isToggledHiddenByDefault: true),
+                //                Tables\Columns\TextColumn::make('updated_at')
+                //                    ->label(__('resources.fields.updated_at'))
+                //                    ->dateTime()
+                //                    ->sortable()
+                //                    ->toggleable(isToggledHiddenByDefault: true),
+                //                Tables\Columns\TextColumn::make('two_factor_confirmed_at')
+                //                    ->label(__('resources.fields.two_factor_confirmed_at'))
+                //                    ->dateTime()
+                //                    ->sortable(),
             ])
             ->filters([
                 //

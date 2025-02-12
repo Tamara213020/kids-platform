@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources\UserResource\RelationManagers;
 
-use App\Models\Badge;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
@@ -10,12 +9,11 @@ use Filament\Tables;
 use Filament\Tables\Actions\AttachAction;
 use Filament\Tables\Actions\DetachAction;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class BadgesRelationManager extends RelationManager
 {
     protected static string $relationship = 'badges';
+
     protected static ?string $recordTitleAttribute = 'name';
 
     public function form(Form $form): Form
@@ -58,7 +56,7 @@ class BadgesRelationManager extends RelationManager
                     ->modalDescription('Дали сте сигурни дека сакате да го поврзете беџот?')
                     ->modalSubmitActionLabel('Потврди')
                     ->preloadRecordSelect()
-                    ->form(fn(AttachAction $action): array => [
+                    ->form(fn (AttachAction $action): array => [
                         $action->getRecordSelect(),
                     ]),
             ])
