@@ -4,6 +4,8 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Enums\UserRole;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Panel;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -15,7 +17,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser
 {
     use HasApiTokens;
 
@@ -101,5 +103,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(CourseQuiz::class, 'course_quiz_users', 'user_id', 'course_quiz_id')
             ->withPivot('score');
+    }
+
+    public function canAccessPanel(Panel $panel): bool
+    {
+        return auth()->user()->role === UserRole::ADMIN;
     }
 }

@@ -44,7 +44,7 @@ const submitAnswers = () => {
         <div class="my-10 max-w-4xl mx-auto p-6 bg-white dark:bg-gray-800 shadow-lg rounded-lg">
             <p class="text-gray-700 dark:text-gray-300">{{ courseQuiz.description }}</p>
 
-            <h3 class="mt-6 text-lg font-semibold text-gray-900 dark:text-gray-200">Questions</h3>
+            <h3 class="mt-6 text-lg font-semibold text-gray-900 dark:text-gray-200">Прашања</h3>
             <ul class="mt-2">
                 <li v-for="question in courseQuiz.course_quiz_questions" :key="question.id"
                     class="p-4 bg-gray-100 dark:bg-gray-700 rounded-lg mb-4">
@@ -67,14 +67,14 @@ const submitAnswers = () => {
             <div class="mt-6">
                 <button @click="submitAnswers"
                         class="px-4 py-2 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600">
-                    Submit Answers
+                    Заврши и провери
                 </button>
             </div>
 
             <div class="mt-6">
                 <Link :href="route('courses.show', courseQuiz.course_id)"
                       class="text-indigo-500 hover:underline text-lg">
-                    ← Back to Course
+                    ← Назад кон курсот
                 </Link>
             </div>
         </div>

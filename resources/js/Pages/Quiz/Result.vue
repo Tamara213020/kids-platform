@@ -32,12 +32,12 @@ defineProps({
                         'bg-yellow-500 text-white': result >= 50 && result < 80,
                         'bg-red-500 text-white': result < 50
                     }">
-                    <h3 class="text-2xl font-bold">Your Score</h3>
+                    <h3 class="text-2xl font-bold">Твојот резултат</h3>
                     <p class="text-4xl font-extrabold mt-2">{{ result }}%</p>
                     <p class="mt-2 text-lg">
-                        <span v-if="result >= 80">🎉 Excellent! Keep up the great work!</span>
-                        <span v-else-if="result >= 50">😊 Good job! A little more practice and you'll ace it!</span>
-                        <span v-else>😢 Don't worry! Keep practicing and you'll improve!</span>
+                        <span v-if="result >= 80">🎉 Одлично! Продолжи со истото темпо!</span>
+                        <span v-else-if="result >= 50">😊 Добра работа! Со малку повеќе вежбање ќе бидеш уште подобар!</span>
+                        <span v-else>😢 Не се грижи! Продолжи да вежбаш и ќе се подобриш!</span>
                     </p>
                 </div>
             </div>
@@ -45,7 +45,7 @@ defineProps({
             <div class="mt-8">
                 <Link :href="route('courses.show', courseQuiz.course_id)"
                       class="px-6 py-3 bg-indigo-600 text-white rounded-lg shadow-md hover:bg-indigo-700 text-lg">
-                    ← Back to Course
+                    ← Назад кон курсот
                 </Link>
             </div>
         </div>

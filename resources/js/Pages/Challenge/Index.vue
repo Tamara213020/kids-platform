@@ -17,7 +17,7 @@ const route = inject('route')
     <AppLayout title="Challenges">
         <template #header>
             <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">
-                Challenges
+                Задачи
             </h2>
         </template>
 

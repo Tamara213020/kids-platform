@@ -17,6 +17,7 @@ class ChallengeCodePartsRelationManager extends RelationManager
         return $form
             ->schema([
                 Forms\Components\TextInput::make('code')
+                    ->label(__('resources.fields.code'))
                     ->required()
                     ->maxLength(255),
             ]);
@@ -27,21 +28,26 @@ class ChallengeCodePartsRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('id')
             ->columns([
-                Tables\Columns\TextColumn::make('code'),
+                Tables\Columns\TextColumn::make('code')
+                    ->label(__('resources.fields.code')),
             ])
             ->filters([
-                //
+
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make(),
+                Tables\Actions\CreateAction::make()
+                    ->label(__('resources.actions.create')),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\EditAction::make()
+                    ->label(__('resources.actions.edit')),
+                Tables\Actions\DeleteAction::make()
+                    ->label(__('resources.actions.delete')),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\DeleteBulkAction::make()
+                        ->label(__('resources.actions.delete')),
                 ]),
             ])
             ->reorderable('order')

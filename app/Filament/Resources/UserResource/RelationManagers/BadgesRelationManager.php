@@ -16,6 +16,11 @@ class BadgesRelationManager extends RelationManager
 
     protected static ?string $recordTitleAttribute = 'name';
 
+    public static function getTitle(\Illuminate\Database\Eloquent\Model $ownerRecord, string $pageClass): string
+    {
+        return __('resources.labels.badges');
+    }
+
     public function form(Form $form): Form
     {
         return $form

@@ -14,6 +14,11 @@ class CertificatesRelationManager extends RelationManager
 
     protected static ?string $title = 'Certificates';
 
+    public static function getTitle(\Illuminate\Database\Eloquent\Model $ownerRecord, string $pageClass): string
+    {
+        return __('resources.labels.certificates');
+    }
+
     public function form(Form $form): Form
     {
         return $form

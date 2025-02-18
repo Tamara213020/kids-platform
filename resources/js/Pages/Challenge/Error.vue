@@ -20,9 +20,9 @@ defineProps({
         </template>
 
         <div class="my-10 max-w-2xl mx-auto p-6 bg-white dark:bg-gray-800 shadow-lg rounded-lg text-center">
-            <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-200 mb-4">Oops! Your solution is incorrect. Please try again.</h3>
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-200 mb-4">Упс! Ова не е вистинското решение. Обиди се повтроно!</h3>
             <Link :href="route('challenges.show', challenge)" class="mt-6 px-6 py-3 bg-indigo-600 text-white rounded-lg shadow-md hover:bg-indigo-700 transition text-lg">
-                Try again
+                Пробај пак
             </Link>
         </div>
     </AppLayout>

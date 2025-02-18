@@ -37,7 +37,7 @@ defineProps({
 
             <div class="mt-8 text-center">
                 <Link :href="route('courses.show', course)" class="text-indigo-500 hover:underline text-lg">
-                    ← Back to Course
+                    ← Назад кон курсот
                 </Link>
             </div>
         </div>

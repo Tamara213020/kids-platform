@@ -8,6 +8,7 @@ return [
         'users' => 'Корисници',
         'certificates' => 'Сертификати',
         'course_quizzes' => 'Квизови',
+        'challenges' => 'Предизвици',
     ],
 
     'fields' => [
@@ -34,12 +35,18 @@ return [
         'course_quiz' => 'Курс квиз',
         'answer' => 'Одговор',
         'correct' => 'Точен одговор',
+        'challenge' => 'Предизвик',
+        'code' => 'Код',
+        'two_factor_secret' => 'Двофакторска заштита',
+        'two_factor_recovery_codes' => 'Кодови за обнова на двофакторска заштита',
+        'two_factor_confirmed_at' => 'Датум на потврда на двофакторска заштита',
     ],
 
     'actions' => [
         'view' => 'Прегледај',
         'edit' => 'Уреди',
         'delete' => 'Избриши',
+        'create' => 'Додај нов',
     ],
 
     'pages' => [
@@ -64,6 +71,9 @@ return [
         'lectures' => 'Лекции',
         'course_quiz_question_answer' => 'одговор',
         'course_quiz_question_answers' => 'Одговори',
+        'challenge' => 'предизвик',
+        'challenges' => 'Предизвици',
+        'quizzes' => 'Квизови',
     ],
 
 ];

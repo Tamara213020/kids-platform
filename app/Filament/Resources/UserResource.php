@@ -5,6 +5,8 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource\RelationManagers\BadgesRelationManager;
 use App\Filament\Resources\UserResource\RelationManagers\CertificatesRelationManager;
+use App\Filament\Resources\UserResource\RelationManagers\ChallengeUserRelationManager;
+use App\Filament\Resources\UserResource\RelationManagers\CourseQuizUserRelationManager;
 use App\Filament\Resources\UserResource\RelationManagers\CoursesRelationManager;
 use App\Models\User;
 use Filament\Forms;
@@ -127,6 +129,8 @@ class UserResource extends Resource
             CoursesRelationManager::class,
             BadgesRelationManager::class,
             CertificatesRelationManager::class,
+            ChallengeUserRelationManager::class,
+            CourseQuizUserRelationManager::class,
         ];
     }
 
