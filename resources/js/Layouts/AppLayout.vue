@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from 'vue';
 import { Head, Link, router } from '@inertiajs/vue3';
-import ApplicationMark from '@/Components/ApplicationMark.vue';
 import Banner from '@/Components/Banner.vue';
 import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
@@ -9,7 +8,10 @@ import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 
 defineProps({
-    title: String,
+    title: {
+        type: String,
+        default: 'ПРОГРАМИРАЊЕ ЗА ДЕЦА'
+    }
 });
 
 const showingNavigationDropdown = ref(false);
@@ -42,7 +44,7 @@ const logout = () => {
                             <!-- Logo -->
                             <div class="shrink-0 flex items-center">
                                 <Link :href="route('dashboard')">
-                                    <ApplicationMark class="block h-9 w-auto" />
+                                    <img src="/images/logo.png" alt="New Logo" class="block h-16 w-auto" />
                                 </Link>
                             </div>
 
@@ -50,6 +52,10 @@ const logout = () => {
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
+                                </NavLink>
+
+                                <NavLink :href="route('challenges.index')" :active="route().current('challenges.index')">
+                                    Challenges
                                 </NavLink>
                             </div>
                         </div>

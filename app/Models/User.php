@@ -96,4 +96,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Challenge::class, 'challenge_users', 'user_id', 'challenge_id');
     }
+
+    public function passedCourseQuizzes(): BelongsToMany
+    {
+        return $this->belongsToMany(CourseQuiz::class, 'course_quiz_users', 'user_id', 'course_quiz_id')
+            ->withPivot('score');
+    }
 }

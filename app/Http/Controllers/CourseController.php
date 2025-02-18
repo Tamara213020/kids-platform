@@ -10,7 +10,7 @@ class CourseController extends Controller
 {
     public function show(Course $course): Response
     {
-        $course->loadMissing('lectures');
+        $course->loadMissing('lectures', 'courseQuizzes');
 
         return Inertia::render('Course/Show', compact('course'));
     }

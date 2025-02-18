@@ -36,6 +36,17 @@ defineProps({
                     </Link>
                 </li>
             </ul>
+
+            <h3 class="mt-6 text-lg font-semibold text-gray-900 dark:text-gray-200">Course Quizzes</h3>
+            <ul class="mt-2">
+                <li v-for="courseQuiz in course.course_quizzes" :key="courseQuiz.id"
+                    class="p-4 bg-gray-100 dark:bg-gray-700 rounded-lg mb-2">
+                    <Link :href="route('courses.course-quizzes.show', [course, courseQuiz])">
+                        <h4 class="text-md font-bold text-gray-800 dark:text-gray-100">{{ courseQuiz.goal }}</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Minimum required points: {{ courseQuiz.min_points }}</p>
+                    </Link>
+                </li>
+            </ul>
         </div>
     </AppLayout>
 </template>

@@ -1,6 +1,7 @@
 <script setup>
 import AppLayout from "@/Layouts/AppLayout.vue";
-import { defineProps } from "vue";
+import {defineProps, inject} from "vue";
+import {Link} from "@inertiajs/vue3";
 
 defineProps({
     challenges: {
@@ -8,6 +9,8 @@ defineProps({
         default: () => [],
     },
 });
+
+const route = inject('route')
 </script>
 
 <template>
@@ -20,7 +23,7 @@ defineProps({
 
         <div class="max-w-3xl mx-auto mt-6 p-6 bg-white dark:bg-gray-900 shadow-lg rounded-lg">
             <ul class="space-y-4">
-                <li
+                <Link :href="route('challenges.show', challenge)"
                     v-for="challenge in challenges"
                     :key="challenge.id"
                     class="p-4 bg-blue-500 text-white rounded-lg shadow-md flex justify-between items-center"
@@ -29,7 +32,7 @@ defineProps({
                         <p class="text-lg font-semibold">⭐ {{ challenge.points }} Points</p>
                         <p class="text-sm">{{ challenge.description }}</p>
                     </div>
-                </li>
+                </Link>
             </ul>
         </div>
     </AppLayout>

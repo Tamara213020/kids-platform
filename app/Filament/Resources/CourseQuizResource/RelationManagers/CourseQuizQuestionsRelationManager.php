@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\CourseQuizResource\RelationManagers;
 
+use App\Models\CourseQuizQuestion;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
@@ -57,6 +58,8 @@ class CourseQuizQuestionsRelationManager extends RelationManager
                 Tables\Actions\CreateAction::make(),
             ])
             ->actions([
+                Tables\Actions\Action::make('view')
+                    ->action(fn (CourseQuizQuestion $record) => redirect(route('filament.admin.resources.course-quiz-questions.view', $record))),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
